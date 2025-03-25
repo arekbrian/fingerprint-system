@@ -899,41 +899,50 @@ def generate_report():
     else:
         messagebox.showerror("Error", "Unauthorized access. Only admin can generate the report.")
 
-# GUI setup
+# Styling the GUI with colors and layout
 root = Tk()
 root.title("Attendance System")
+root.geometry("500x400")
+root.config(bg="#f2f2f2")  # Light background color
+
+# Adding a title label
+Label(root, text="Attendance System", font=("Arial", 20, "bold"), fg="#333333", bg="#f2f2f2").grid(row=0, column=0, columnspan=2, pady=10)
+
+# Styling for labels and inputs
+label_style = {"bg": "#f2f2f2", "fg": "#333333", "font": ("Arial", 12)}
+input_style = {"width": 25, "font": ("Arial", 12)}
 
 # Student ID Registration
-Label(root, text="Student ID").grid(row=0, column=0)
-entry_student_id = Entry(root)
-entry_student_id.grid(row=0, column=1)
+Label(root, text="Student ID", **label_style).grid(row=1, column=0, padx=10, pady=5, sticky=E)
+entry_student_id = Entry(root, **input_style)
+entry_student_id.grid(row=1, column=1, padx=10, pady=5)
 
-Label(root, text="Student Name").grid(row=1, column=0)
-entry_student_name = Entry(root)
-entry_student_name.grid(row=1, column=1)
+Label(root, text="Student Name", **label_style).grid(row=2, column=0, padx=10, pady=5, sticky=E)
+entry_student_name = Entry(root, **input_style)
+entry_student_name.grid(row=2, column=1, padx=10, pady=5)
 
-Label(root, text="Fingerprint Token").grid(row=2, column=0)
-entry_fingerprint_token = Entry(root)
-entry_fingerprint_token.grid(row=2, column=1)
+Label(root, text="Fingerprint Token", **label_style).grid(row=3, column=0, padx=10, pady=5, sticky=E)
+entry_fingerprint_token = Entry(root, **input_style)
+entry_fingerprint_token.grid(row=3, column=1, padx=10, pady=5)
 
-Button(root, text="Register Student", command=register_student).grid(row=3, column=1)
+Button(root, text="Register Student", bg="#4CAF50", fg="white", font=("Arial", 12, "bold"), command=register_student).grid(row=4, column=1, pady=10)
 
 # Attendance Marking
-Label(root, text="Fingerprint Token/ID").grid(row=4, column=0)
-entry_fingerprint_token = Entry(root)
-entry_fingerprint_token.grid(row=4, column=1)
+Label(root, text="Fingerprint Token/ID", **label_style).grid(row=5, column=0, padx=10, pady=5, sticky=E)
+entry_fingerprint_token = Entry(root, **input_style)
+entry_fingerprint_token.grid(row=5, column=1, padx=10, pady=5)
 
-Button(root, text="Mark Attendance", command=mark_attendance).grid(row=5, column=1)
+Button(root, text="Mark Attendance", bg="#4CAF50", fg="white", font=("Arial", 12, "bold"), command=mark_attendance).grid(row=6, column=1, pady=10)
 
 # Alternative ID scanning option
-Button(root, text="Scan School ID with Camera", command=scan_school_id).grid(row=6, column=1)
+Button(root, text="Scan School ID with Camera", bg="#2196F3", fg="white", font=("Arial", 12, "bold"), command=scan_school_id).grid(row=7, column=1, pady=10)
 
 # Report generation (Admin Only)
-Label(root, text="Admin Password").grid(row=7, column=0)
-entry_admin_password = Entry(root, show="*")
-entry_admin_password.grid(row=7, column=1)
+Label(root, text="Admin Password", **label_style).grid(row=8, column=0, padx=10, pady=5, sticky=E)
+entry_admin_password = Entry(root, show="*", **input_style)
+entry_admin_password.grid(row=8, column=1, padx=10, pady=5)
 
-Button(root, text="Generate Report", command=generate_report).grid(row=8, column=1)
+Button(root, text="Generate Report", bg="#FF5722", fg="white", font=("Arial", 12, "bold"), command=generate_report).grid(row=9, column=1, pady=10)
 
 init_db()
 
