@@ -548,8 +548,9 @@ def simulate_admin_fingerprint_scan():
 
 # Initialize the window
 root = tk.Tk()
-root.title("Attendance System")
-root.geometry("400x300")
+root.title("Smart Attendance System")
+root.geometry("500x400")
+root.config(bg="#F0F0F0")  # Background color
 
 registered_fingerprints = {}
 
@@ -665,8 +666,9 @@ def generate_report():
             report_window = tk.Toplevel(root)
             report_window.title("Attendance Report")
             report_window.geometry("400x300")
+            report_window.config(bg="#F8F8F8")
 
-            report_text = tk.Text(report_window)
+            report_text = tk.Text(report_window, bg="#E8E8E8", padx=10, pady=10)
             report_text.pack(expand=True, fill='both')
 
             for student_id, records in attendance_records.items():
@@ -715,19 +717,25 @@ def scan_school_id():
         messagebox.showerror("Error", "Unable to extract text from the ID card.")
         return None
 
+# Create a frame for the title and buttons
+frame = tk.Frame(root, bg="#FFFFFF", pady=20)
+frame.pack(fill="both", expand=True)
+
+# Title label
+title_label = tk.Label(frame, text="Smart Attendance System", font=("Helvetica", 16, "bold"), bg="#FFFFFF")
+title_label.pack(pady=10)
+
 # Create buttons for admin registration, attendance, and report generation
-register_button = tk.Button(root, text="Register Fingerprint (Admin)", command=admin_register_fingerprint)
+register_button = tk.Button(frame, text="Register Fingerprint (Admin)", command=admin_register_fingerprint, font=("Helvetica", 12), bg="#4CAF50", fg="white", padx=20, pady=10)
 register_button.pack(pady=10)
 
-attendance_button = tk.Button(root, text="Mark Attendance", command=mark_attendance)
+attendance_button = tk.Button(frame, text="Mark Attendance", command=mark_attendance, font=("Helvetica", 12), bg="#2196F3", fg="white", padx=20, pady=10)
 attendance_button.pack(pady=10)
 
-report_button = tk.Button(root, text="Generate Attendance Report (Admin)", command=generate_report)
+report_button = tk.Button(frame, text="Generate Attendance Report (Admin)", command=generate_report, font=("Helvetica", 12), bg="#F44336", fg="white", padx=20, pady=10)
 report_button.pack(pady=10)
 
 # Load fingerprints on startup
 load_registered_fingerprints()
 
 root.mainloop()
-
-
